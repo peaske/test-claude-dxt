@@ -28,7 +28,7 @@ async function createOfficialDXTTest() {
         "name": "Test Author",
         "email": "test@example.com"
       },
-      "icon": "icon.svg",
+      "icon": "icon.png",
       "server": {
         "type": "node",
         "entry_point": "server/index.js",
@@ -151,14 +151,13 @@ if (require.main === module) {
     await fs.writeFile(path.join(serverPath, 'index.js'), serverCode);
     console.log('Created: server/index.js');
     
-    // 6. シンプルなテストアイコン作成
-    console.log('Creating test icon...');
-    const iconContent = `<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-  <rect width="64" height="64" fill="#4F46E5"/>
-  <text x="32" y="40" font-family="Arial" font-size="32" fill="white" text-anchor="middle">T</text>
-</svg>`;
-    await fs.writeFile(path.join(projectPath, 'icon.svg'), iconContent);
-    console.log('Created: icon.svg (placeholder icon)');
+    // 6. PNGアイコン作成（SVGではなくPNG形式で）
+    console.log('Creating PNG icon...');
+    // 64x64の最小限のPNGアイコン（Base64）
+    const pngIconBase64 = 'iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAsklEQVR4nO2YQQqAIBBF/4Zd1Brd/85ugm3uNtAQjRnfB+92M/+934yOUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaWU+gG7XjYEcwIQfAAAAABJRU5ErkJggg==';
+    const iconBuffer = Buffer.from(pngIconBase64, 'base64');
+    await fs.writeFile(path.join(projectPath, 'icon.png'), iconBuffer);
+    console.log('Created: icon.png');
     
     // 7. 依存関係インストール
     console.log('Installing dependencies...');
@@ -166,7 +165,15 @@ if (require.main === module) {
     execSync('npm install', { stdio: 'inherit' });
     console.log('Dependencies installed');
     
-    // 8. DXTツールインストール & パッケージ化
+    // 8. キャッシュクリア & DXTツールインストール
+    console.log('Clearing npm cache...');
+    try {
+      execSync('npm cache clean --force', { stdio: 'inherit' });
+      console.log('Cache cleared');
+    } catch (error) {
+      console.log('Cache clear skipped');
+    }
+    
     console.log('Installing DXT CLI...');
     try {
       execSync('npm install -g @anthropic-ai/dxt', { stdio: 'inherit' });
@@ -182,8 +189,16 @@ if (require.main === module) {
     } catch (error) {
       console.log('DXT pack error:', error.message);
       console.log('Trying with local dxt...');
-      execSync('npx @anthropic-ai/dxt pack', { stdio: 'inherit' });
-      console.log('DXT package created with local CLI!');
+      try {
+        execSync('npx @anthropic-ai/dxt pack', { stdio: 'inherit' });
+        console.log('DXT package created with local CLI!');
+      } catch (localError) {
+        console.log('Local DXT error:', localError.message);
+        // マニュアルインストール指示
+        console.log('\nPlease manually install DXT CLI and pack:');
+        console.log('npm install -g @anthropic-ai/dxt');
+        console.log('dxt pack');
+      }
     }
     
     // 9. 完了メッセージ
