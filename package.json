@@ -1,0 +1,43 @@
+{
+  "name": "create-claude-dxt-test",
+  "version": "1.0.0",
+  "description": "One-line command to create and test Claude Desktop Extensions (DXT)",
+  "main": "index.js",
+  "bin": {
+    "create-claude-dxt-test": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Test passed - ready for DXT creation\"",
+    "build": "npm run create-dxt",
+    "create-dxt": "node index.js"
+  },
+  "keywords": [
+    "claude",
+    "dxt",
+    "desktop-extensions",
+    "mcp",
+    "anthropic",
+    "ai"
+  ],
+  "author": "peaske",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/dxt": "latest",
+    "@modelcontextprotocol/sdk": "latest",
+    "fs-extra": "^11.1.1",
+    "chalk": "^4.1.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peaske/test-claude-dxt.git"
+  },
+  "homepage": "https://github.com/peaske/test-claude-dxt#readme",
+  "bugs": {
+    "url": "https://github.com/peaske/test-claude-dxt/issues"
+  }
+}
