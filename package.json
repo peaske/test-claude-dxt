@@ -1,6 +1,6 @@
 {
   "name": "create-claude-dxt-test",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "One-line command to create and test Claude Desktop Extensions (DXT)",
   "main": "index.js",
   "bin": {
@@ -21,6 +21,11 @@
     "ai"
   ],
   "author": "peaske",
+  "files": [
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ],
   "license": "MIT",
   "dependencies": {
     "@anthropic-ai/dxt": "latest",
