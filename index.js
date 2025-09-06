@@ -46,7 +46,7 @@ async function createOfficialDXTTest() {
       "keywords": ["test", "dxt", "claude", "mcp"],
       "license": "MIT",
       "compatibility": {
-        "claude_desktop": ">=1.0.0",
+        "claude_desktop": ">=0.12.0",
         "platforms": ["darwin", "win32"],
         "runtimes": {
           "node": ">=16.0.0"
