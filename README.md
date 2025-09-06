@@ -1,6 +1,6 @@
 # 🚀 Create Claude DXT Test
 
-One-line command to create and test Claude Desktop Extensions (DXT) files.
+One-line command to create and test Claude Desktop Extensions (DXT) files based on official Anthropic specifications.
 
 ## ⚡ Quick Start
 
@@ -10,8 +10,15 @@ npx github:peaske/test-claude-dxt
 
 This command will:
 1. ✅ Create `~/Documents/test-claude-dxt` folder
-2. ✅ Generate `test-claude-dxt-app.dxt` file  
-3. ✅ Install ready for Claude Desktop testing
+2. ✅ Generate official-spec compliant `test-claude-dxt-app.dxt` file  
+3. ✅ Install ready for Claude Desktop testing with "Running" status
+
+## 🎯 Version 0.2.0 Features
+
+- **Official DXT Specification Compliance**: Based on latest Anthropic DXT manifest spec
+- **Proper MCP Server Implementation**: Uses @modelcontextprotocol/sdk correctly
+- **Test Time Tool**: Simple tool to verify DXT functionality
+- **Cross-platform Support**: macOS and Windows compatible
 
 ## 🎯 What it creates
 

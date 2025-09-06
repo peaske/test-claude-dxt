@@ -1,6 +1,6 @@
 {
   "name": "create-claude-dxt-test",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "One-line command to create and test Claude Desktop Extensions (DXT)",
   "main": "index.js",
   "bin": {
